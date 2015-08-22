@@ -44,9 +44,10 @@ $ zip-got --help
     zip-got <url> <exclude-patterns>... --cleanup --extract
 
   Example
-    zip-got http://unicorns.com/unicorns.zip '__MACOSX/**' 'bower.json' 'README.md' 'LICENSE.md' --cleanup --extract
+    zip-got http://unicorns.com/unicorns.zip '__MACOSX/**' 'bower.json' 'README.md' 'LICENSE.md' --target='./.tmp/unicorns.zip' --cleanup --extract
 
   Options
+	--target: target path to download a zip file
 	--cleanup: remove the zip file after extracting
 	--extract: extract the zip file after downloading
 

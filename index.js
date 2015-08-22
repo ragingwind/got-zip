@@ -55,6 +55,8 @@ function zipGot(url, opts, cb) {
 				cb();
 			});
 
+			unzipper.on('error', cb);
+
 			var exclude = !opts.exclude ? null : function(file) {
 				return nomatch(file.path, opts.exclude);
 			};
@@ -63,6 +65,8 @@ function zipGot(url, opts, cb) {
 				path: path.dirname(opts.target),
 				filter: exclude
 			});
+		} else {
+			cb();
 		}
 	});
 
