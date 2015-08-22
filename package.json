@@ -1,0 +1,42 @@
+{
+  "name": "zip-got",
+  "version": "0.0.0",
+  "description": "You've got a file zipped and then extracted",
+  "license": "MIT",
+  "repository": "ragingwind/zip-got",
+  "author": {
+    "name": "ragingwind",
+    "email": "ragingwind@gmail.com",
+    "url": "ragingwind.me"
+  },
+  "bin": "cli.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha -t 20000"
+  },
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
+  "keywords": [
+    "cli-app",
+    "cli",
+    "zip",
+    "got",
+    "zip-got"
+  ],
+  "dependencies": {
+    "decompress-zip": "^0.2.0",
+    "got": "^4.1.1",
+    "meow": "^3.3.0",
+    "minimatch": "^2.0.10",
+    "mkdirp": "^0.5.1",
+    "object-assign": "^4.0.1",
+    "rimraf": "^2.4.2"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}
