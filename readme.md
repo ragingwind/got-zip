@@ -36,6 +36,7 @@ zipGot(zip, var opts = {
 ```
 $ npm install --global zip-got
 ```
+
 ```
 $ zip-got --help
 
@@ -46,8 +47,8 @@ $ zip-got --help
     zip-got http://unicorns.com/unicorns.zip '__MACOSX/**' 'bower.json' 'README.md' 'LICENSE.md' --cleanup --extract
 
   Options
-    --cleanup: remove the zip file after extracting
-		--extract: extract the zip file after downloading
+	--cleanup: remove the zip file after extracting
+	--extract: extract the zip file after downloading
 
 	<url> url of zip file trying to download
 	<exclude-patterns> pattern to exclude some of the files when it is extracted
