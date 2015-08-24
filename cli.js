@@ -25,10 +25,8 @@ var cli = meow({
 var url = cli.input.shift();
 var opts = objectAssign({
 	exclude: cli.input,
-	dest: cli.flags.dest || process.cwd(),
-	cleanup: cli.flags.cleanup,
-	extract: cli.flags.extract
-});
+	dest: process.cwd()
+}, cli.flags);
 
 zipGot(url, opts, function(err) {
 	if (err) {
