@@ -8,18 +8,18 @@ var mkdirp = require('mkdirp');
 var path = require('path');
 var fs = require('fs');
 
-var tmp = './.tmp';
-var zip = 'https://github.com/PolymerElements/polymer-starter-kit/releases/download/v1.0.3/polymer-starter-kit-light-1.0.3.zip';
-
 describe('zip-got', function () {
+	var zip = 'https://github.com/PolymerElements/polymer-starter-kit/releases/download/v1.0.3/polymer-starter-kit-light-1.0.3.zip';
+	var opts = {
+		dest: './.tmp'
+	};
+	var filename = path.join(opts.dest, path.basename(zip));
+
 	beforeEach(function() {
-		rimraf.sync(tmp);
-		mkdirp(tmp);
+		rimraf.sync(opts.dest);
+		mkdirp(opts.dest);
 	});
 
-	var opts = {
-		target: path.join(tmp, path.basename(zip))
-	};
 
 	it('should download the file', function (done) {
 		zipGot(zip, opts, function(err) {
@@ -28,7 +28,7 @@ describe('zip-got', function () {
 			}
 
 			assert(!err);
-			assert(!fs.existsSync(opts.target));
+			assert(!fs.existsSync(filename));
 			done();
 		});
 	});
@@ -42,7 +42,7 @@ describe('zip-got', function () {
 			}
 
 			assert(!err);
-			assert(fs.existsSync(opts.target));
+			assert(fs.existsSync(filename));
 			done();
 		});
 	});
@@ -61,10 +61,10 @@ describe('zip-got', function () {
 			}
 
 			assert(!err);
-			assert(!fs.existsSync(path.join(tmp, '__MACOSX')));
-			assert(!fs.existsSync(path.join(tmp, 'bower.json')));
-			assert(!fs.existsSync(path.join(tmp, 'LICENSE.md')));
-			assert(!fs.existsSync(path.join(tmp, 'README.md')));
+			assert(!fs.existsSync(path.join(opts.dest, '__MACOSX')));
+			assert(!fs.existsSync(path.join(opts.dest, 'bower.json')));
+			assert(!fs.existsSync(path.join(opts.dest, 'LICENSE.md')));
+			assert(!fs.existsSync(path.join(opts.dest, 'README.md')));
 
 			done();
 		});

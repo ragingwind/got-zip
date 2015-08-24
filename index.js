@@ -20,10 +20,6 @@ function nomatch(file, patterns) {
 }
 
 function zipGot(url, opts, cb) {
-	if (!url) {
-		throw new Error('zip-file url requireed');
-	}
-
 	if (typeof opts === 'function') {
 		cb = opts;
 		opts = {};
@@ -32,15 +28,21 @@ function zipGot(url, opts, cb) {
 	opts = objectAssign({
 		extract: true,
 		cleanup: true,
-		target: path.basename(url),
-		exclude: []
+		exclude: [],
 	}, opts);
+
+	if (!url) {
+		throw new Error('zip-file url required');
+	} else if (!opts.dest) {
+		throw new Error('dest path required');
+	}
 
 	opts.headers = objectAssign({
 		'user-agent': 'https://github.com/ragingwind/zip-got'
 	}, opts.headers);
 
-	var zipfile = path.relative(process.cwd(), opts.target);
+	var dest = path.relative(process.cwd(), opts.dest);
+	var zipfile = path.join(dest, path.basename(url));
 	var zipstream = fs.createWriteStream(zipfile);
 
 	zipstream.on('finish', function() {
@@ -62,7 +64,7 @@ function zipGot(url, opts, cb) {
 			};
 
 			unzipper.extract({
-				path: path.dirname(opts.target),
+				path: dest,
 				filter: exclude
 			});
 		} else {

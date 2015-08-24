@@ -10,10 +10,10 @@ var cli = meow({
 	  '  zip-got <url> <exclude-patterns>... --cleanup --extract',
 		'',
 	  'Example',
-	  '  zip-got http://unicorns.com/unicorns.zip \'__MACOSX/**\' \'bower.json\' \'README.md\' \'LICENSE.md\' --target=\'./.tmp/unicorns.zip\' --cleanup --extract',
+	  '  zip-got http://unicorns.com/unicorns.zip \'__MACOSX/**\' \'bower.json\' \'README.md\' \'LICENSE.md\' --dest=\'./.tmp\' --cleanup --extract',
 		'',
 	  'Options',
-		'--target: target path to download a zip file',
+		'--dest: dest path to download a zip file',
 		'--cleanup: remove the zip file after extracting',
 		'--extract: extract the zip file after downloading',
 		'',
@@ -25,7 +25,7 @@ var cli = meow({
 var url = cli.input.shift();
 var opts = objectAssign({
 	exclude: cli.input,
-	target: cli.flags.target,
+	dest: cli.flags.dest || process.cwd(),
 	cleanup: cli.flags.cleanup,
 	extract: cli.flags.extract
 });
@@ -35,6 +35,6 @@ zipGot(url, opts, function(err) {
 		console.error(err);
 		return;
 	}
-	
+
 	console.log(url, 'has been downloaded');
 });
