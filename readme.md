@@ -1,22 +1,22 @@
-# zip-got
+# got-zip
 
-> You've got a file zipped and then extracted
+> Got a file zipped and then extracted
 
 
 ## Install
 
 ```
-$ npm install --save zip-got
+$ npm install --save got-zip
 ```
 
 
 ## Usage
 
 ```js
-var zipGot = require('zip-got');
+var gotZip = require('got-zip');
 var zip = 'https://github.com/PolymerElements/polymer-starter-kit/releases/download/v1.0.3/polymer-starter-kit-light-1.0.3.zip';
 
-zipGot(zip, var opts = {
+gotZip(zip, var opts = {
 	dest: './.tmp',
 	extract: true,
 	cleanup: true,
@@ -34,17 +34,17 @@ zipGot(zip, var opts = {
 ## CLI
 
 ```
-$ npm install --global zip-got
+$ npm install --global got-zip
 ```
 
 ```
-$ zip-got --help
+$ got-zip --help
 
   Usage
-    zip-got <url> <exclude-patterns>... --cleanup --extract
+    got-zip <url> <exclude-patterns>... --cleanup --extract
 
   Example
-    zip-got http://unicorns.com/unicorns.zip '__MACOSX/**' 'bower.json' 'README.md' 'LICENSE.md' --dest='./.tmp' --cleanup --extract
+    got-zip http://unicorns.com/unicorns.zip '__MACOSX/**' 'bower.json' 'README.md' 'LICENSE.md' --dest='./.tmp' --cleanup --extract
 
   Options
 	--dest: path to download a zip file
@@ -58,7 +58,7 @@ $ zip-got --help
 
 ## API
 
-### zipGot(input, [options], [callback])
+### gotZip(input, [options], [callback])
 
 #### url
 

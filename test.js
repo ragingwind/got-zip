@@ -2,7 +2,7 @@
 'use strict';
 
 var assert = require('assert');
-var zipGot = require('./');
+var gotZip = require('./');
 var rimraf = require('rimraf');
 var mkdirp = require('mkdirp');
 var path = require('path');
@@ -22,7 +22,7 @@ describe('zip-got', function () {
 
 
 	it('should download the file', function (done) {
-		zipGot(zip, opts, function(err) {
+		gotZip(zip, opts, function(err) {
 			if (err) {
 				console.error(err);
 			}
@@ -36,7 +36,7 @@ describe('zip-got', function () {
 	it('should exist zipfile downloaded', function (done) {
 		opts.cleanup = false;
 
-		zipGot(zip, opts, function(err) {
+		gotZip(zip, opts, function(err) {
 			if (err) {
 				console.error(err);
 			}
@@ -55,7 +55,7 @@ describe('zip-got', function () {
 			'README.md'
 		];
 
-		zipGot(zip, opts, function(err) {
+		gotZip(zip, opts, function(err) {
 			if (err) {
 				console.error(err);
 			}

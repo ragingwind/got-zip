@@ -1,9 +1,9 @@
 {
-  "name": "zip-got",
+  "name": "got-zip",
   "version": "0.2.1",
-  "description": "You've got a file zipped and then extracted",
+  "description": "Got a file zipped and then extracted",
   "license": "MIT",
-  "repository": "ragingwind/zip-got",
+  "repository": "ragingwind/node-got-zip",
   "author": {
     "name": "ragingwind",
     "email": "ragingwind@gmail.com",
@@ -21,11 +21,9 @@
     "cli.js"
   ],
   "keywords": [
-    "cli-app",
-    "cli",
+    "got-zip",
     "zip",
-    "got",
-    "zip-got"
+    "got"
   ],
   "dependencies": {
     "decompress-zip": "^0.2.0",
