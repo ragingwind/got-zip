@@ -8,8 +8,8 @@ var mkdirp = require('mkdirp');
 var path = require('path');
 var fs = require('fs');
 
-describe('zip-got', function () {
-	var zip = 'https://github.com/PolymerElements/polymer-starter-kit/releases/download/v1.0.3/polymer-starter-kit-light-1.0.3.zip';
+describe('Got and extract a zip file', function () {
+	var zip = 'https://github.com/ragingwind/node-got-zip/archive/v0.2.2.zip';
 	var opts = {
 		dest: './.tmp'
 	};
@@ -20,23 +20,26 @@ describe('zip-got', function () {
 		mkdirp(opts.dest);
 	});
 
-
-	it('should download the file', function (done) {
-		gotZip(zip, opts, function(err) {
+	it('should download, extact and cleanup a zip', function (done) {
+		gotZip(zip, opts).then(function(err) {
 			if (err) {
 				console.error(err);
+				return;
 			}
 
 			assert(!err);
 			assert(!fs.existsSync(filename));
 			done();
+		}).catch(function (err) {
+			assert(err);
+			done();
 		});
 	});
 
-	it('should exist zipfile downloaded', function (done) {
+	it('should exist a zip', function (done) {
 		opts.cleanup = false;
 
-		gotZip(zip, opts, function(err) {
+		gotZip(zip, opts).then(function(err) {
 			if (err) {
 				console.error(err);
 			}
@@ -49,22 +52,18 @@ describe('zip-got', function () {
 
 	it('should exclude all of the files', function (done) {
 		opts.exclude = [
-			'__MACOSX/**',
-			'bower.json',
-			'LICENSE.md',
-			'README.md'
+			'package.json',
+			'readme.md'
 		];
 
-		gotZip(zip, opts, function(err) {
+		gotZip(zip, opts).then(function(err) {
 			if (err) {
 				console.error(err);
 			}
 
 			assert(!err);
-			assert(!fs.existsSync(path.join(opts.dest, '__MACOSX')));
-			assert(!fs.existsSync(path.join(opts.dest, 'bower.json')));
-			assert(!fs.existsSync(path.join(opts.dest, 'LICENSE.md')));
-			assert(!fs.existsSync(path.join(opts.dest, 'README.md')));
+			assert(!fs.existsSync(path.join(opts.dest, 'package.json')));
+			assert(!fs.existsSync(path.join(opts.dest, 'readme.md')));
 
 			done();
 		});

@@ -1,6 +1,6 @@
 # got-zip
 
-> Got a file zipped and then extracted
+> Got a file zipped and then extract
 
 
 ## Install
@@ -14,20 +14,17 @@ $ npm install --save got-zip
 
 ```js
 var gotZip = require('got-zip');
-var zip = 'https://github.com/PolymerElements/polymer-starter-kit/releases/download/v1.0.3/polymer-starter-kit-light-1.0.3.zip';
+var zip = 'https://github.com/ragingwind/node-got-zip/archive/v0.2.2.zip';
 
 gotZip(zip, var opts = {
 	dest: './.tmp',
 	extract: true,
 	cleanup: true,
-	exclude: ['__MACOSX/**']
-};, function(err) {
-	if (err) {
-		console.error(err);
-		return
-	}
-
-	// do unicorns & rainbows
+	exclude: ['readme.md']
+}).then(function () {
+	// downloading and extracting has been completed
+}).catch(function (err) {
+	// manage error
 });
 ```
 
@@ -44,7 +41,7 @@ $ got-zip --help
     got-zip <url> <exclude-patterns>... --cleanup --extract
 
   Example
-    got-zip http://unicorns.com/unicorns.zip '__MACOSX/**' 'bower.json' 'README.md' 'LICENSE.md' --dest='./.tmp' --cleanup --extract
+    got-zip http://unicorns.com/unicorns.zip 'readme.md' --dest='./.tmp' --cleanup --extract
 
   Options
 	--dest: path to download a zip file
@@ -58,7 +55,9 @@ $ got-zip --help
 
 ## API
 
-### gotZip(input, [options], [callback])
+### gotZip(input, [options])
+
+gotZip will returns **promise**
 
 #### url
 
