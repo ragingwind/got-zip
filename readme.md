@@ -20,7 +20,8 @@ gotZip(zip, {
 	dest: './.tmp',
 	extract: true,
 	cleanup: true,
-	exclude: ['readme.md']
+	exclude: ['readme.md'],
+	strip: 0
 }).then(function () {
 	// downloading and extracting has been completed
 }).catch(function (err) {
@@ -38,7 +39,7 @@ $ npm install --global got-zip
 $ got-zip --help
 
   Usage
-    got-zip <url> <exclude-patterns>... --cleanup --extract
+    got-zip <url> <exclude-patterns>... <options>
 
   Example
     got-zip http://unicorns.com/unicorns.zip 'readme.md' --dest='./.tmp' --cleanup --extract
@@ -47,6 +48,7 @@ $ got-zip --help
 	--dest: path to download a zip file
 	--cleanup: remove the zip file after extracting
 	--extract: extract the zip file after downloading
+	--strip: remove leading folders in the path structure.
 
 	<url> url of zip file trying to download
 	<exclude-patterns> pattern to exclude some of the files when it is extracted
@@ -91,6 +93,12 @@ If set, zip will be deleted after extract
 Type: `string`
 
 You can give [patterns](https://github.com/isaacs/minimatch) to exclude some of the files when it is extracted
+
+##### strip
+
+Type: `number`
+
+remove leading folders in the path structure. visit [decompress-zip](https://github.com/bower/decompress-zip) for further information.
 
 ## License
 

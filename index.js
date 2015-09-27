@@ -26,6 +26,7 @@ function gotZip(url, opts) {
 			extract: true,
 			cleanup: true,
 			exclude: [],
+			strip: 0
 		}, opts);
 
 		if (!url) {
@@ -72,7 +73,8 @@ function gotZip(url, opts) {
 
 			unzipper.extract({
 				path: dest,
-				filter: exclude
+				filter: exclude,
+				strip: opts.strip
 			});
 		});
 
