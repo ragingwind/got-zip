@@ -21,17 +21,11 @@ describe('Got and extract a zip file', function () {
 	});
 
 	it('should download, extact and cleanup a zip', function (done) {
-		gotZip(zip, opts).then(function(err) {
-			if (err) {
-				console.error(err);
-				return;
-			}
-
-			assert(!err);
+		gotZip(zip, opts).then(function () {
 			assert(!fs.existsSync(filename));
 			done();
 		}).catch(function (err) {
-			assert(err);
+			assert.fail(err);
 			done();
 		});
 	});
@@ -39,13 +33,11 @@ describe('Got and extract a zip file', function () {
 	it('should exist a zip', function (done) {
 		opts.cleanup = false;
 
-		gotZip(zip, opts).then(function(err) {
-			if (err) {
-				console.error(err);
-			}
-
-			assert(!err);
+		gotZip(zip, opts).then(function () {
 			assert(fs.existsSync(filename));
+			done();
+		}).catch(function (err) {
+			assert.fail(err);
 			done();
 		});
 	});
@@ -56,15 +48,13 @@ describe('Got and extract a zip file', function () {
 			'readme.md'
 		];
 
-		gotZip(zip, opts).then(function(err) {
-			if (err) {
-				console.error(err);
-			}
-
-			assert(!err);
+		gotZip(zip, opts).then(function () {
 			assert(!fs.existsSync(path.join(opts.dest, 'package.json')));
 			assert(!fs.existsSync(path.join(opts.dest, 'readme.md')));
 
+			done();
+		}).catch(function (err) {
+			assert.fail(err);
 			done();
 		});
 	});

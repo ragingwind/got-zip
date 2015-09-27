@@ -44,7 +44,10 @@ function gotZip(url, opts) {
 
 		zipstream.on('finish', function() {
 			if (!opts.extract) {
-				resolve();
+				resolve({
+					dest: dest,
+					zipfile: zipfile
+				});
 				return;
 			}
 
@@ -55,10 +58,13 @@ function gotZip(url, opts) {
 					fs.unlinkSync(zipfile);
 				}
 
-				resolve();
+				resolve({
+					dest: dest,
+					zipfile: zipfile
+				});
 			});
 
-			unzipper.on('error', resolve);
+			unzipper.on('error', reject);
 
 			var exclude = !opts.exclude ? null : function(file) {
 				return nomatch(file.path, opts.exclude);

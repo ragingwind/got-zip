@@ -14,7 +14,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha -t 20000"
+    "test": "mocha -t 50000"
   },
   "files": [
     "index.js",
