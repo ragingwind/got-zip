@@ -1,6 +1,6 @@
 {
   "name": "got-zip",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Got a file zipped and then extracted",
   "license": "MIT",
   "repository": "ragingwind/got-zip",
