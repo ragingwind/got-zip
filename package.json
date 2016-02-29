@@ -3,7 +3,7 @@
   "version": "0.2.5",
   "description": "Got a file zipped and then extracted",
   "license": "MIT",
-  "repository": "ragingwind/node-got-zip",
+  "repository": "ragingwind/got-zip",
   "author": {
     "name": "ragingwind",
     "email": "ragingwind@gmail.com",

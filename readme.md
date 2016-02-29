@@ -14,7 +14,7 @@ $ npm install --save got-zip
 
 ```js
 var gotZip = require('got-zip');
-var zip = 'https://github.com/ragingwind/node-got-zip/archive/v0.2.2.zip';
+var zip = 'https://github.com/ragingwind/got-zip/archive/v0.2.2.zip';
 
 gotZip(zip, {
 	dest: './.tmp',

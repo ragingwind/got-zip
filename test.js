@@ -9,7 +9,7 @@ var path = require('path');
 var fs = require('fs');
 
 describe('Got and extract a zip file', function () {
-	var zip = 'https://github.com/ragingwind/node-got-zip/archive/v0.2.2.zip';
+	var zip = 'https://github.com/ragingwind/got-zip/archive/v0.2.2.zip';
 	var opts = {
 		dest: './.tmp'
 	};
