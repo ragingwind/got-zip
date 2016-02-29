@@ -1,4 +1,4 @@
-# got-zip
+# got-zip [![Build Status](https://travis-ci.org/ragingwind/got-zip.svg?branch=master)](https://travis-ci.org/ragingwind/got-zip)
 
 > Got a file zipped and then extract
 
