@@ -1,61 +1,46 @@
 /*global describe, it, beforeEach */
 'use strict';
 
-var assert = require('assert');
-var gotZip = require('./');
-var rimraf = require('rimraf');
-var mkdirp = require('mkdirp');
-var path = require('path');
-var fs = require('fs');
+import test from 'ava';
+import gotZip from './';
+import rimraf from 'rimraf';
+import mkdirp from 'mkdirp';
+import path from 'path';
+import fs from 'fs';
 
-describe('Got and extract a zip file', function () {
-	var zip = 'https://github.com/ragingwind/got-zip/archive/v0.2.2.zip';
-	var opts = {
-		dest: './.tmp'
-	};
-	var filename = path.join(opts.dest, path.basename(zip));
+const zip = 'https://github.com/ragingwind/got-zip/archive/v0.2.2.zip';
+var opts = {
+	dest: path.join(__dirname, './.tmp')
+};
+var filename = path.join(opts.dest, path.basename(zip));
 
-	beforeEach(function() {
-		rimraf.sync(opts.dest);
-		mkdirp(opts.dest);
+test.beforeEach(function() {
+	rimraf.sync(opts.dest);
+	mkdirp(opts.dest);
+});
+
+test.serial('should download, extact and cleanup a zip', t => {
+	return gotZip(zip, opts).then(() => {
+		t.ok(!fs.existsSync(filename));
 	});
+});
 
-	it('should download, extact and cleanup a zip', function (done) {
-		gotZip(zip, opts).then(function () {
-			assert(!fs.existsSync(filename));
-			done();
-		}).catch(function (err) {
-			assert.fail(err);
-			done();
-		});
+test.serial('should exist a zip', t => {
+	opts.cleanup = false;
+
+	return gotZip(zip, opts).then(() => {
+		t.ok(fs.existsSync(filename));
 	});
+});
 
-	it('should exist a zip', function (done) {
-		opts.cleanup = false;
+test.serial('should exclude all of the files', t => {
+	opts.exclude = [
+		'package.json',
+		'readme.md'
+	];
 
-		gotZip(zip, opts).then(function () {
-			assert(fs.existsSync(filename));
-			done();
-		}).catch(function (err) {
-			assert.fail(err);
-			done();
-		});
-	});
-
-	it('should exclude all of the files', function (done) {
-		opts.exclude = [
-			'package.json',
-			'readme.md'
-		];
-
-		gotZip(zip, opts).then(function () {
-			assert(!fs.existsSync(path.join(opts.dest, 'package.json')));
-			assert(!fs.existsSync(path.join(opts.dest, 'readme.md')));
-
-			done();
-		}).catch(function (err) {
-			assert.fail(err);
-			done();
-		});
+	return gotZip(zip, opts).then(() => {
+		t.ok(!fs.existsSync(path.join(opts.dest, 'package.json')));
+		t.ok(!fs.existsSync(path.join(opts.dest, 'readme.md')));
 	});
 });

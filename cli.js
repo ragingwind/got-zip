@@ -7,12 +7,12 @@ var objectAssign = require('object-assign');
 var cli = meow({
 	help: [
 		'Usage',
-	  '  got-zip <url> <exclude-patterns>... --cleanup --extract',
+		'  got-zip <url> <exclude-patterns>... --cleanup --extract',
 		'',
-	  'Example',
-	  '  got-zip http://unicorns.com/unicorns.zip \'__MACOSX/**\' \'bower.json\' \'README.md\' \'LICENSE.md\' --dest=\'./.tmp\' --cleanup --extract',
+		'Example',
+		'  got-zip http://unicorns.com/unicorns.zip \'__MACOSX/**\' \'bower.json\' \'README.md\' \'LICENSE.md\' --dest=\'./.tmp\' --cleanup --extract',
 		'',
-	  'Options',
+		'Options',
 		'--dest: dest path to download a zip file',
 		'--cleanup: remove the zip file after extracting',
 		'--extract: extract the zip file after downloading',
@@ -28,7 +28,7 @@ var opts = objectAssign({
 	dest: process.cwd()
 }, cli.flags);
 
-gotZip(url, opts, function(err) {
+gotZip(url, opts, function (err) {
 	if (err) {
 		console.error(err);
 		return;

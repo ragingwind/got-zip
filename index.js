@@ -11,9 +11,9 @@ var Promise = require('pinkie-promise');
 function nomatch(file, patterns) {
 	patterns = patterns || [];
 
-	var nomatched = patterns.every(function(pattern) {
+	var nomatched = patterns.every(function (pattern) {
 		return minimatch(file, pattern, {
-			dot : true
+			dot: true
 		}) === false;
 	});
 
@@ -43,7 +43,7 @@ function gotZip(url, opts) {
 		var zipfile = path.join(dest, path.basename(url));
 		var zipstream = fs.createWriteStream(zipfile);
 
-		zipstream.on('finish', function() {
+		zipstream.on('finish', function () {
 			if (!opts.extract) {
 				resolve({
 					dest: dest,
@@ -54,7 +54,7 @@ function gotZip(url, opts) {
 
 			var unzipper = new DecompressZip(zipfile);
 
-			unzipper.on('extract', function() {
+			unzipper.on('extract', function () {
 				if (opts.cleanup && fs.existsSync(zipfile)) {
 					fs.unlinkSync(zipfile);
 				}
@@ -67,9 +67,9 @@ function gotZip(url, opts) {
 
 			unzipper.on('error', reject);
 
-			var exclude = !opts.exclude ? null : function(file) {
+			var exclude = opts.exclude ? function (file) {
 				return nomatch(file.path, opts.exclude);
-			};
+			} : null;
 
 			unzipper.extract({
 				path: dest,
